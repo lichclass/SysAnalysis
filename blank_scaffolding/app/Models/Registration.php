@@ -7,7 +7,10 @@ use DB;
 class Registration extends Model
 {
     function create_account($user_credentials){
-        return $user_credentials;
+        return DB::table('users')->insert([
+            'email' => $user_credentials->email,
+            'password' => $user_credentials->password
+        ]);
     }
 
     function credentials_validation($account, $token){
